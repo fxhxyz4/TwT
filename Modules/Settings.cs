@@ -12,7 +12,7 @@ namespace TwT
     {
         public static void Get()
         {
-            Messages.Info($"\n\nSetup TwT settings");
+            Messages.Info($"Setup TwT settings");
 
             Settings.WriteLogs = GetBooleanSetting(
                 "WriteLogs: creates log files with all actions",
@@ -24,7 +24,7 @@ namespace TwT
                 "RootPrivileges"
             );
 
-            Messages.Log("\nSettings successfully configured!");
+            Messages.Log("Settings successfully configured!");
         }
 
         private static bool GetBooleanSetting(string desc, string settingName)
@@ -32,17 +32,18 @@ namespace TwT
             bool res;
             while (true)
             {
-                Messages.Info($"\n\n{desc}\n");
+                Messages.Info($"{desc}");
                 Messages.Log($"Enter value for {settingName} (true/false): ");
 
                 string input = Console.ReadLine();
+                Console.WriteLine();
 
                 if (bool.TryParse(input, out res))
                 {
                     return res;
                 }
 
-                Messages.Error($"\n\nInvalid input for {settingName}. Please type 'true' or 'false'.");
+                Messages.Error($"Invalid input for {settingName}. Please type 'true' or 'false'.");
             }
         }
     }
