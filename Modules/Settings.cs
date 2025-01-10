@@ -8,9 +8,27 @@ namespace TwT
         public static bool RootPrivileges { get; set; }
     }
 
-    class GetSettings
+    internal class Auth
     {
-        public static void Get()
+        public static string ChannelName { get; set; }
+        public static string OAuthKey { get; set; }
+    }
+
+    internal class Credentials
+    {
+        /*
+         * @public
+         */
+        public static void Configure()
+        {
+            GetSettings();
+            GetAuth();
+        }
+
+        /*
+         * @private
+         */
+        private static void GetSettings()
         {
             Messages.Info($"Setup TwT settings");
 
@@ -27,6 +45,41 @@ namespace TwT
             Messages.Log("Settings successfully configured!");
         }
 
+        /*
+         * @private
+         */
+        private static void GetAuth()
+        {
+            Messages.Info($"Type login credentials");
+
+            Auth.ChannelName = GetCredentials(
+                "Type bot channel name",
+                "ChannelName"
+            );
+
+            Auth.OAuthKey = GetCredentials(
+                "Type oauth key",
+                "OAuthKey"
+            );
+
+            try
+            {
+              Messages.Log("\n\nTried to connect...");
+            }
+            catch (Exception e)
+            {
+              Messages.Error($"{e.StackTrace} + {e.Message}");
+            }
+        }
+
+        /*
+         * @private
+         *
+         * @params {string desc}
+         * @params {string settingName}
+         *
+         * @returns {bool}
+         */
         private static bool GetBooleanSetting(string desc, string settingName)
         {
             bool res;
@@ -46,6 +99,25 @@ namespace TwT
                 Messages.Error($"Invalid input for {settingName}. Please type 'true' or 'false'.");
             }
         }
+
+        /*
+         * @private
+         *
+         * @params {string desc}
+         * @params {string loginName}
+         *
+         * @returns {string}
+         */
+        private static string GetCredentials(string desc, string loginName)
+        {
+            Console.WriteLine("\n\n");
+            Messages.Info($"{desc}");
+
+            Messages.Log($"Enter value for {loginName}: ");
+
+            string input = Console.ReadLine();
+
+            return input ?? string.Empty;
+        }
     }
 }
-

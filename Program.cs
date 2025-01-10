@@ -4,101 +4,80 @@ email: fxhxyz@proton.me
 website: fxhxyz.envs.sh
 */
 
-using System.Net.NetworkInformation;
-using TwitchLib.Client;
-using TwitchLib.Api;
-using TwitchLib;
 using System;
+using System.Net.NetworkInformation;
 
 namespace TwT
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			Console.OutputEncoding = System.Text.Encoding.UTF8;
-			Console.InputEncoding = System.Text.Encoding.UTF8;
+    public class Program
+    {
+        private const string PING_URL = "twitch.tv";
 
-			// string[] settings = new string[]{ };
+        public static void Main(string[] args)
+        {
+            InitializeConsoleEncoding();
 
-			// const PING_URL
-			const string PING_URL = "twitch.tv";
+            ShowBanner();
 
-			string[] banner = new string[]
-			{
-				"==========================================================",
-				"==========================================================",
-				"",
-				"    ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██╗   ██╗███████╗",
-				"    ██╔════╝╚██╗██╔╝██║  ██║╚██╗██╔╝╚██╗ ██╔╝╚══███╔╝",
-				"    █████╗   ╚███╔╝ ███████║ ╚███╔╝  ╚████╔╝   ███╔╝ ",
-				"    ██╔══╝   ██╔██╗ ██╔══██║ ██╔██╗   ╚██╔╝   ███╔╝  ",
-				"    ██║     ██╔╝ ██╗██║  ██║██╔╝ ██╗   ██║   ███████╗",
-				"    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝",
-				"",
-				"==========================================================",
-				"==========================================================",
-        "\n\n"
-			};
+            if (!CheckConnectionAvailable())
+            {
+                Messages.Warn("Failed to connect with Twitch!");
+                return;
+            }
 
-			/*
-			 * ShowBanner
-			 *
-			 * @params {string[] banner}
-			 */
-			static void ShowBanner(string[] banner)
-			{
-				foreach (string line in banner)
-				{
-					Console.ForegroundColor = ConsoleColor.Cyan;
-					Console.WriteLine(line);
-				}
+            Credentials.Configure();
+            Console.ReadLine();
+        }
 
-				Console.ForegroundColor = ConsoleColor.White;
-			}
+        private static void InitializeConsoleEncoding()
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+        }
 
-			ShowBanner(banner);
+        private static void ShowBanner()
+        {
+            string[] banner = new string[]
+            {
+              "==========================================================",
+              "==========================================================",
+              "",
+              "    ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██╗   ██╗███████╗",
+              "    ██╔════╝╚██╗██╔╝██║  ██║╚██╗██╔╝╚██╗ ██╔╝╚══███╔╝",
+              "    █████╗   ╚███╔╝ ███████║ ╚███╔╝  ╚████╔╝   ███╔╝ ",
+              "    ██╔══╝   ██╔██╗ ██╔══██║ ██╔██╗   ╚██╔╝   ███╔╝  ",
+              "    ██║     ██╔╝ ██╗██║  ██║██╔╝ ██╗   ██║   ███████╗",
+              "    ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝",
+              "",
+              "==========================================================",
+              "==========================================================",
+              "\n\n"
+            };
 
-			bool isConnection = CheckConnectionAvailable();
-			if (!isConnection)
-			{
-				Messages.Warn($"Failed to connection with twitch!");
-			}
-			else
-			{
-				GetSettings.Get();
-			}
+            Console.ForegroundColor = ConsoleColor.Cyan;
 
-			/*
-			 * CheckConnectionAvailable
-			 * @params {string url}
-			 *
-			 * @returns {bool}
-			 */
-			bool CheckConnectionAvailable()
-			{
-				try
-				{
-					Ping ping = new Ping();
-					PingReply reply = ping.Send(PING_URL);
+            foreach (string line in banner)
+            {
+                Console.WriteLine(line);
+            }
 
-					if (reply.Status == IPStatus.Success)
-					{
-						return true;
-					}
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
-					Messages.Warn("Failed to connection with twitch!");
-					return false;
-				}
-				catch (Exception e)
-				{
-					Messages.Error(e.StackTrace + e.Message);
-					throw;
-				}
-			}
+        private static bool CheckConnectionAvailable()
+        {
+            try
+            {
+                using Ping ping = new Ping();
+                PingReply reply = ping.Send(PING_URL);
 
-			// Console READLINE
-			Console.ReadLine();
-		}
-	}
+                return reply.Status == IPStatus.Success;
+            }
+            catch (Exception e)
+            {
+                Messages.Error(e.StackTrace + e.Message);
+                return false;
+            }
+        }
+    }
 }
