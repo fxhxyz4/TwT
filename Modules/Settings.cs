@@ -17,8 +17,8 @@ namespace TwT
     internal class Credentials
     {
         /*
-         * @public
-         */
+        * @public
+        */
         public static void Configure()
         {
             GetSettings();
@@ -26,8 +26,8 @@ namespace TwT
         }
 
         /*
-         * @private
-         */
+        * @private
+        */
         private static void GetSettings()
         {
             Messages.Info($"Setup TwT settings");
@@ -46,8 +46,8 @@ namespace TwT
         }
 
         /*
-         * @private
-         */
+        * @private
+        */
         private static void GetAuth()
         {
             Messages.Info($"Type login credentials");
@@ -73,13 +73,13 @@ namespace TwT
         }
 
         /*
-         * @private
+        * @private
          *
          * @params {string desc}
          * @params {string settingName}
          *
          * @returns {bool}
-         */
+       */
         private static bool GetBooleanSetting(string desc, string settingName)
         {
             bool res;

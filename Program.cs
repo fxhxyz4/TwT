@@ -29,12 +29,18 @@ namespace TwT
             Console.ReadLine();
         }
 
+        /*
+        * @private
+        */
         private static void InitializeConsoleEncoding()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.InputEncoding = System.Text.Encoding.UTF8;
         }
 
+        /*
+        * @private
+        */
         private static void ShowBanner()
         {
             string[] banner = new string[]
@@ -64,6 +70,9 @@ namespace TwT
             Console.ForegroundColor = ConsoleColor.White;
         }
 
+        /*
+        * @private
+        */
         private static bool CheckConnectionAvailable()
         {
             try
