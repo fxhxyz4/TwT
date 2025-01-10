@@ -1,0 +1,3 @@
+Install-Package TwitchLib -Version 3.5.3
+Install-Package TwitchLib.Api -Version 3.10.0-preview-e47ba7f
+Install-Package TwitchLib.Client -Version 4.0.0-preview-fd131763416cb9f1a31705ca609566d7e7e7fac8
