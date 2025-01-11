@@ -38,37 +38,37 @@ namespace TwT
     }
 
     /*
-     * @private
+     * @public
      *
-     * mb later
+     * @params {string str}
      */
-    // private static void ReadSync()
-    // {
-    //   Messages.Info("Write path for open log file:");
-    //   Console.WriteLine("\n");
-    //
-    //   string path = Console.ReadLine();
-    //
-    //   if (!File.Exists(path))
-    //   {
-    //     Messages.Error($"File {path} does not exist!");
-    //     return;
-    //   }
-    //
-    //   try
-    //   {
-    //     string[] lines = File.ReadAllLines(path);
-    //
-    //     foreach (string line in lines)
-    //     {
-    //       Console.WriteLine(line);
-    //     }
-    //   }
-    //   catch (Exception e)
-    //   {
-    //     Messages.Error($"An error occurred while reading the file: {e.StackTrace} {e.Message}");
-    //   }
-    // }
+    public static void ReadSync(string str)
+    {
+      Messages.Info("Write path for open log file:");
+      Console.WriteLine("\n");
+
+      string path = Console.ReadLine();
+
+      if (!File.Exists(path))
+      {
+        Messages.Error($"File {path} does not exist!");
+        return;
+      }
+
+      try
+      {
+        string[] lines = File.ReadAllLines(path);
+
+        foreach (string line in lines)
+        {
+          Console.WriteLine(line);
+        }
+      }
+      catch (Exception e)
+      {
+        Messages.Error($"An error occurred while reading the file: {e.StackTrace} {e.Message}");
+      }
+    }
   }
 }
 

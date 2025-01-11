@@ -62,15 +62,15 @@ namespace TwT
          */
         private static void WriteMessage(string msg, ConsoleColor color)
         {
-            Console.ForegroundColor = color;
-            Console.WriteLine($"{msg}");
+          Console.ForegroundColor = color;
+          Console.WriteLine(msg);
 
-            if (Settings.WriteLogs == true)
-            {
-              Logs.WriteSync(msg);
-            }
+          if (Settings.WriteLogs)
+          {
+            Logs.WriteSync(msg);
+          }
 
-            Console.ForegroundColor = ConsoleColor.White;
+          Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
