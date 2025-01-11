@@ -1,7 +1,7 @@
 ﻿/*
-Author: fxhxyz
-email: fxhxyz@proton.me
-website: fxhxyz.envs.sh
+  Author: fxhxyz
+  email: fxhxyz@proton.me
+  website: fxhxyz.envs.sh
 */
 
 using System;
@@ -25,6 +25,20 @@ namespace TwT
                 Messages.Warn("Failed to connect with Twitch!");
                 return;
             }
+
+            // CLI cli = new CLI();
+            //
+            // if (args.Length == 0)
+            // {
+            //   Console.WriteLine("No command provided. Type 'help' for a list of commands.");
+            // }
+            // else
+            // {
+            //   string command = args[0];
+            //   string[] commandArgs = args.Length > 1 ? args[1..] : new string[] { };
+            //
+            //   cli.ExecuteCommand(command, commandArgs);
+            // }
 
             Credentials.Configure();
             Console.ReadLine();
