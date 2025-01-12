@@ -1,4 +1,7 @@
 using System;
+using TwitchLib.Client;
+using TwitchLib.Client.Events;
+using TwitchLib.Client.Models;
 
 namespace TwT
 {
@@ -65,6 +68,9 @@ namespace TwT
             try
             {
               Messages.Log("\n\nTried to connect...");
+
+              Bot bot = new Bot();
+              bot.Connect(Auth.ChannelName, Auth.OAuthKey);
             }
             catch (Exception e)
             {
