@@ -1,7 +1,7 @@
-﻿/*
+/*
   Author: fxhxyz
-  email: fxhxyz@proton.me
-  website: fxhxyz.envs.sh
+  Email: fxhxyz@proton.me
+  Website: fxhxyz.envs.sh
 */
 
 using System;
