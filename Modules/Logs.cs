@@ -13,10 +13,12 @@ namespace TwT
     public static void WriteSync(string log)
     {
       DateTime now = DateTime.Now;
-      string fullDate = now.ToString("dd_MM_yyyy");
+
+      string date = now.ToString("dd_MM_yyyy");
+      string timeAndDate = now.ToString("dd_MM_yyyy_HH_mm_ss");
 
       string projectRoot = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-      string LOG_PATH = Path.Combine(projectRoot, "Logs");
+      string LOG_PATH = Path.Combine(projectRoot, "logs");
 
       try
       {
@@ -25,9 +27,9 @@ namespace TwT
           Directory.CreateDirectory(LOG_PATH);
         }
 
-        using (StreamWriter output = new StreamWriter(Path.Combine(LOG_PATH, fullDate + ".log"), append: true))
+        using (StreamWriter output = new StreamWriter(Path.Combine(LOG_PATH, date + ".log"), append: true))
         {
-          output.WriteLine($"[{fullDate.Replace("_", ":")}]: {log ?? "No log message!"}");
+          output.WriteLine($"[{timeAndDate.Replace("_", ":")}]: {log ?? "No log message!"}");
         }
       }
       catch (Exception e)
@@ -40,29 +42,21 @@ namespace TwT
     /*
      * @public
      *
-     * @params {string str}
+     * @params {string path}
      */
-    public static void ReadSync(string str)
+    public static void ReadSync(string path)
     {
-      Messages.Info("Write path for open log file:");
-      Console.WriteLine("\n");
-
-      string path = Console.ReadLine();
-
-      if (!File.Exists(path))
-      {
-        Messages.Error($"File {path} does not exist!");
-        return;
-      }
-
       try
       {
+        Messages.Info("================Logs start================");
         string[] lines = File.ReadAllLines(path);
 
         foreach (string line in lines)
         {
-          Console.WriteLine(line);
+          Messages.Log(line);
         }
+
+        Messages.Info("================Logs ended================");
       }
       catch (Exception e)
       {
