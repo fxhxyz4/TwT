@@ -20,7 +20,7 @@ namespace TwT
 
         if (string.IsNullOrEmpty(pathToJson))
         {
-          Console.WriteLine($"Error: Path: {pathToJson} is empty");
+          Messages.Error($"Error: Path: {pathToJson} is empty");
         }
         else
         {
