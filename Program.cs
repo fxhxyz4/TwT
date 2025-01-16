@@ -127,7 +127,7 @@ namespace TwT
 
         private static void WaitBeforeExit()
         {
-            Console.WriteLine("\nPress any key to exit...");
+            Messages.Log("Press any key to exit...");
             Console.ReadKey();
         }
 
