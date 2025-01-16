@@ -5,8 +5,15 @@ using TwitchLib.Client.Models;
 
 namespace TwT
 {
+
+  public static class MonitoringSettings
+  {
+    public static List<PhraseCommand> MonitoredPhrases { get; } = new List<PhraseCommand>();
+  }
   public class Bot
   {
+    //TODO
+    public string regexp = "[A-Za-z0-9]+";
     private static TwitchClient client;
 
     /*
@@ -40,12 +47,26 @@ namespace TwT
     /*
      * @private
      */
-    private static async Task OnMessageReceived(object sender, OnMessageReceivedArgs e)
+    public static async Task OnMessageReceived(object sender, OnMessageReceivedArgs e)
     {
       if (Settings.WriteLogs)
       {
         Logs.WriteSync($"[{e.ChatMessage.DisplayName}]: {e.ChatMessage.Message}");
       }
+
+      /*
+      if (Settings.RootPrivileges)
+      {
+        foreach (var entry in MonitoringSettings.MonitoredPhrases)
+        {
+          if (string.Equals(e.ChatMessage.Message, entry.Phrase, StringComparison.OrdinalIgnoreCase))
+          {
+            Bot.SendMessage($"/{entry.Command} {e.ChatMessage.DisplayName}");
+            break;
+          }
+        }
+      }
+      */
 
       // Messages.Log($"[{e.ChatMessage.DisplayName}]: {e.ChatMessage.Message}");
       await Task.CompletedTask;
@@ -64,7 +85,7 @@ namespace TwT
     /*
      * @public
      */
-    public void Disconnect()
+    public static void Disconnect()
     {
       client.Disconnect();
     }
