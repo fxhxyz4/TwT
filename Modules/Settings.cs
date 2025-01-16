@@ -1,10 +1,19 @@
 using System;
+using System.Runtime.InteropServices.JavaScript;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Models;
 
 namespace TwT
 {
+    public class PhraseCommand
+    {
+      public string Date { get; set; }
+      public string Command { get; set; }
+      public string Phrase { get; set; }
+
+    }
+
     internal class Settings
     {
         public static bool WriteLogs { get; set; }
@@ -68,9 +77,7 @@ namespace TwT
             try
             {
               Messages.Log("\n\nTried to connect...");
-
-              Bot bot = new Bot();
-              bot.Connect(Auth.ChannelName, Auth.OAuthKey);
+              Program.TwitchService.Connect();
             }
             catch (Exception e)
             {
@@ -94,7 +101,7 @@ namespace TwT
                 Messages.Info($"{desc}");
                 Messages.Log($"Enter value for {settingName} (true/false): ");
 
-                string input = Console.ReadLine();
+                string input = Console.ReadLine()?.ToLower().Trim();
                 Console.WriteLine();
 
                 if (bool.TryParse(input, out res))
@@ -121,7 +128,7 @@ namespace TwT
 
             Messages.Log($"Enter value for {loginName}: ");
 
-            string input = Console.ReadLine();
+            string input = Console.ReadLine()?.ToLower().Trim();
 
             return input ?? string.Empty;
         }
