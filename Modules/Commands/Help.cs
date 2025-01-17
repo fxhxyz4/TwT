@@ -26,15 +26,9 @@ namespace TwT
 
       Console.WriteLine("\n");
 
-      Messages.Log("ban - Banned users by phrase");
-      Messages.Log("Use: ban {phrase}");
-      Messages.Log("Example: ban KEKW");
-
-      Console.WriteLine("\n");
-
-      Messages.Log("mute - Mute users by phrase (Default time: 10s)");
-      Messages.Log("Use: mute {time} {phrase}");
-      Messages.Log("Example: mute 100 KEKW");
+      Messages.Log("pyramid - Created pyramid by phrase");
+      Messages.Log("Use: pyramid {phrase}");
+      Messages.Log("Example: pyramid KEKW");
 
       Console.WriteLine("\n");
 
@@ -44,9 +38,15 @@ namespace TwT
 
       Console.WriteLine("\n");
 
-      Messages.Log("pyramid - Created pyramid by phrase");
-      Messages.Log("Use: pyramid {phrase}");
-      Messages.Log("Example: pyramid KEKW");
+      Messages.Log("ban - Banned users by phrase");
+      Messages.Log("Use: ban {phrase}");
+      Messages.Log("Example: ban KEKW");
+
+      Console.WriteLine("\n");
+
+      Messages.Log("mute - Mute users by phrase (Default time: 10s)");
+      Messages.Log("Use: mute {time} {phrase}");
+      Messages.Log("Example: mute 100 KEKW");
 
       Console.WriteLine("\n");
 

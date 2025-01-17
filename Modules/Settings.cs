@@ -17,6 +17,7 @@ namespace TwT
     internal class Settings
     {
         public static bool WriteLogs { get; set; }
+        public static bool DisplayMsg { get; set; }
         public static bool RootPrivileges { get; set; }
     }
 
@@ -49,6 +50,11 @@ namespace TwT
                 "WriteLogs"
             );
 
+            Settings.DisplayMsg = GetBooleanSetting(
+              "DisplayMsg: displayed messages in terminal",
+              "DisplayMsg"
+            );
+
             Settings.RootPrivileges = GetBooleanSetting(
                 "RootPrivileges: gives access to all commands",
                 "RootPrivileges"
@@ -62,7 +68,7 @@ namespace TwT
         */
         private static void GetAuth()
         {
-            Messages.Info($"Type login credentials");
+            Messages.Info($"\n\nType login credentials");
 
             Auth.ChannelName = GetCredentials(
                 "Type bot channel name",

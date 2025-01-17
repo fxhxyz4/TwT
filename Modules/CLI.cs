@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 
 namespace TwT
 {
@@ -18,6 +19,9 @@ namespace TwT
         { "open", new OpenCommand() },
         { "pyramid", new PyramidCommand() },
         { "ban", new BanCommand() },
+        { "spam", new SpamCommand() },
+        { "reconnect", new ReconnectCommand() },
+        { "ping", new PingCommand() }
       };
     }
 

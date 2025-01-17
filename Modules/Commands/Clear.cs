@@ -10,7 +10,7 @@ namespace TwT
       try
       {
         // clear original list
-        MonitoringSettings.MonitoredPhrases.Clear();
+        // MonitoringSettings.MonitoredPhrases.Clear();
 
         // clear copied list
         TransferData._jsonList.Clear();

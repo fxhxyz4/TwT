@@ -6,7 +6,8 @@ namespace TwT
   {
     public void Execute(string[] args)
     {
-      Bot.SendMessage(args[0]);
+      string message = string.Join(" ", args).TrimStart().TrimEnd();
+      Bot.SendMessage(message);
     }
   }
 }

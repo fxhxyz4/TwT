@@ -1,2 +1,2 @@
-pyramid msg + echo msg:
-Unhandled exception. System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+blya nu ya v ahue
+msg in lowercase

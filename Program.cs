@@ -154,6 +154,7 @@ namespace TwT
               Messages.Debug($"OAuth Key: {oAuthKey}");
               Messages.Debug($"Ping Latency: {Program.PingLatency} ms");
               Messages.Debug($"Logs Enabled: {Settings.WriteLogs}");
+              Messages.Debug($"Message Display: {Settings.DisplayMsg}");
               Messages.Debug($"Root Privileges: {Settings.RootPrivileges}");
               Messages.Info("====================================================");
 
